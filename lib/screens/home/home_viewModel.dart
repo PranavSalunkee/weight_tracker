@@ -81,8 +81,6 @@ abstract class HomeViewModel extends State<HomeView>
     }
     UserData userData = UserData(dates: dateList, weights: weightList);
     await widget.manager?.saveUserData(widget.userName, userData);
-    print(widget.userName);
-    print(widget.manager?.preferences?.getString(widget.userName));
   }
 
   // Animation
@@ -159,7 +157,4 @@ abstract class HomeViewModel extends State<HomeView>
 
   void _updateCardData() {
     dataList.isNotEmpty ? currentData = dataList[0].weight : currentData = null;
-    if (dataList.length > 1) {
-      DateTime currentDate = dataList[0].date;
-  }
 }}

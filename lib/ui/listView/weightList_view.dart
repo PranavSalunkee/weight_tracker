@@ -13,11 +13,10 @@ import '../textField/text_field.dart';
 
 class WeightListView extends StatefulWidget with ProjectStrings, ProjectPaddings, ProjectRadius {
   WeightListView({
-    required Key key,
     required this.data,
     required this.update,
     required this.isLoading,
-  }) : super(key: key);
+  });
   final List<UserWeight> data;
   final ValueChanged update;
   final bool isLoading;
@@ -29,9 +28,6 @@ class WeightListViewState extends State<WeightListView>
     with ProjectStrings, ProjectPaddings, ProjectIcons, TickerProviderStateMixin {
   late TextEditingController weightFormFieldController;
   bool isOkBtnActive = true;
-
-  HashSet<UserWeight> selectedItems = HashSet();
-  bool isMultiSelectionEnable = false;
 
   @override
   void initState() {
@@ -53,18 +49,17 @@ class WeightListViewState extends State<WeightListView>
         itemCount: widget.data.length,
         itemBuilder: (BuildContext context, int index) {
           UserWeight currentData = widget.data[index];
-          bool isSelected = selectedItems.contains(widget.data[index]);
           return WeightListTile(
             date: currentData.date,
             weight: currentData.weight,
-            onTap: () => doMultiSelection(widget.data[index]),
+            onTap: () => doEdit(widget.data[index]),
           );
         },
       ),
     );
   }
 
-  Future<void> doMultiSelection(UserWeight userWeight) async {
+  Future<void> doEdit(UserWeight userWeight) async {
       // EDIT DIALOG
       String stringWeight = userWeight.weight.toString();
       weightFormFieldController.text = stringWeight;
@@ -80,7 +75,6 @@ class WeightListViewState extends State<WeightListView>
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Expanded(
-                      flex: 10,
                       child: CustomFormField(
                         controller: weightFormFieldController,
                         onChanged: (text) {

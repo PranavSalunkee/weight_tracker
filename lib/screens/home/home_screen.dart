@@ -32,7 +32,6 @@ class HomeViewState extends HomeViewModel with ProjectColors, ProjectIcons, Proj
   Widget build(BuildContext context) {
     views = [
       WeightListView(
-        key: listViewKey,
         data: dataList,
         update: (value) => updateCardData(),
         isLoading: isLoading,
