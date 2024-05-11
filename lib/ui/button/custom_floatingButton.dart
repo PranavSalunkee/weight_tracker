@@ -11,7 +11,7 @@ class FloatingButtonAdd extends StatelessWidget with ProjectStrings, ProjectColo
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-        tooltip:  LanguagesEnum.addData.name,
+        tooltip:  'ADD DATA',
         backgroundColor: Colors.blue,
         onPressed: onPressed,
         child: Icon(Icons.add_outlined, color: whiteWithOpacity));
